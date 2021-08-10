@@ -5,7 +5,6 @@ import '../../../common/constants/route_constants.dart';
 import '../../../common/constants/translation_constants.dart';
 import '../../blocs/videos/videos_cubit.dart';
 import '../../widgets/button.dart';
-import '../watch_video/watch_video_arguments.dart';
 
 class VideosWidget extends StatelessWidget {
   final VideosCubit videosCubit;
@@ -24,10 +23,7 @@ class VideosWidget extends StatelessWidget {
           return Button(
             text: TranslationConstants.watchTrailers,
             onPressed: () {
-              Navigator.of(context).pushNamed(
-                RouteList.watchTrailer,
-                arguments: WatchVideoArguments(_videos),
-              );
+
             },
           );
         } else {

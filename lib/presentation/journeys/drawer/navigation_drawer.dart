@@ -123,7 +123,7 @@ class NavigationDrawer extends StatelessWidget {
         description: TranslationConstants.aboutDescription,
         buttonText: TranslationConstants.okay,
         image: Image.asset(
-          'assets/pngs/tmdb_logo.png',
+          'assets/pngs/tmdb_logo.pngs',
           height: Sizes.dimen_32.h,
         ),
       ),

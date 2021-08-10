@@ -17,7 +17,7 @@ class Logo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      'assets/pngs/logo.png',
+      'assets/pngs/logo.pngs',
       key: const ValueKey('logo_image_key'),
       color: context.read<ThemeCubit>().state == Themes.dark
           ? Colors.white

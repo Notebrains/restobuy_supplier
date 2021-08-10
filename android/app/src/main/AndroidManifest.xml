@@ -1,7 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.restobuy.supplier.restobuy_supplier_flutter">
-   <application
-        android:label="restobuy_supplier_flutter"
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:label="Restobuy supplier"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

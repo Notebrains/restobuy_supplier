@@ -29,6 +29,7 @@ dependencies:
   path_provider: ^2.0.1
   youtube_player_flutter: ^8.0.0
   flare_flutter: ^3.0.0
+  flutter_animator: ^3.1.1
   flutter_localizations:
     sdk: flutter
 
@@ -42,11 +43,12 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: ^0.9.0
+  flutter_native_splash: ^1.2.1
 
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/icons/app_logo.png"
+  image_path: "assets/icons/logo.png"
 
 flutter:
   uses-material-design: true
@@ -55,7 +57,13 @@ flutter:
     - assets/animations/gifs/
     - assets/animations/lottiefiles/
     - assets/icons/
-    - assets/icons/png/
-    - assets/icons/svg/
+    - assets/icons/pngs/
+    - assets/icons/svgs/
     - assets/images/
+    - assets/languages/
+
+  #fonts:
+  #  - family: Roboto
+  #    fonts:
+  #      - asset: assets/fonts/Roboto.ttf
 
