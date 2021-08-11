@@ -8,13 +8,11 @@ import '../themes/theme_color.dart';
 class Button extends StatelessWidget {
   final String text;
   final Function() onPressed;
-  final bool isEnabled;
 
   const Button({
     Key? key,
     required this.text,
     required this.onPressed,
-    this.isEnabled = true,
   }) : super(key: key);
 
   @override
@@ -23,24 +21,20 @@ class Button extends StatelessWidget {
       duration: const Duration(milliseconds: 200),
       curve: Curves.easeIn,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: isEnabled
-              ? [AppColor.royalBlue, AppColor.violet]
-              : [Colors.grey, Colors.grey],
-        ),
+        color: Colors.amber,
         borderRadius: BorderRadius.all(
-          Radius.circular(Sizes.dimen_20.w),
+          Radius.circular(5),
         ),
       ),
-      padding: EdgeInsets.symmetric(horizontal: Sizes.dimen_16.w),
+      padding: EdgeInsets.symmetric(horizontal: Sizes.dimen_12.w),
       margin: EdgeInsets.symmetric(vertical: Sizes.dimen_10.h),
-      height: Sizes.dimen_16.h,
+      width: double.infinity,
+      height: Sizes.dimen_20.h,
       child: TextButton(
-        key: const ValueKey('main_button'),
-        onPressed: isEnabled ? onPressed : null,
+        onPressed: onPressed,
         child: Text(
-          text.t(context),
-          style: Theme.of(context).textTheme.button,
+          text,
+          style: TextStyle(color: Colors.black),
         ),
       ),
     );

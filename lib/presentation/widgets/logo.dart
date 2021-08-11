@@ -17,12 +17,9 @@ class Logo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      'assets/pngs/logo.pngs',
-      key: const ValueKey('logo_image_key'),
-      color: context.read<ThemeCubit>().state == Themes.dark
-          ? Colors.white
-          : AppColor.vulcan,
+      'assets/icons/pngs/tmdb_logo.png',
       height: height.h,
+      width: height.h,
     );
   }
 }

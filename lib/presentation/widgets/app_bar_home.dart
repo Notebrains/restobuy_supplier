@@ -5,7 +5,7 @@ PreferredSizeWidget appBarHome (BuildContext context){
     title: Image.asset('assets/icons/pngs/logo.png', color: Colors.orange, fit: BoxFit.cover, width: 120),
     centerTitle: false,
     backgroundColor: Colors.white,
-    elevation: 5,
+    elevation: 3,
     actions: <Widget>[
       IconButton(
         icon: Icon(Icons.notifications_none_rounded,

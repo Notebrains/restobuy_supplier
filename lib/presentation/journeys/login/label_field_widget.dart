@@ -8,6 +8,7 @@ class LabelFieldWidget extends StatelessWidget {
   final String label;
   final String hintText;
   final bool isPasswordField;
+  final IconData ic;
   final TextEditingController controller;
 
   const LabelFieldWidget({
@@ -15,6 +16,7 @@ class LabelFieldWidget extends StatelessWidget {
     required this.label,
     required this.hintText,
     required this.controller,
+    required this.ic,
     this.isPasswordField = false,
     this.textFieldKey,
   }) : super(key: key);
@@ -28,7 +30,7 @@ class LabelFieldWidget extends StatelessWidget {
         children: [
           Text(
             label.toUpperCase(),
-            style: Theme.of(context).textTheme.headline6,
+            style: TextStyle(color: Colors.black),
             textAlign: TextAlign.start,
           ),
           TextField(
@@ -36,8 +38,20 @@ class LabelFieldWidget extends StatelessWidget {
             obscureText: isPasswordField,
             obscuringCharacter: '*',
             controller: controller,
-            style: Theme.of(context).textTheme.headline6,
-            decoration: InputDecoration(hintText: hintText),
+            style: TextStyle(color: Colors.black),
+            decoration: InputDecoration(
+                hintText: hintText,
+                prefixIcon: Icon(ic, color: Colors.grey,),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                borderSide: BorderSide(color: Colors.grey.shade100, width: 2),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                borderSide: BorderSide(color: Colors.amber, width: 1),
+              ),
+            ),
+
           ),
         ],
       ),

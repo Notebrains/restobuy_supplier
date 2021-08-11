@@ -9,6 +9,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       resizeToAvoidBottomInset: true,
       body: Center(
         child: Column(
@@ -16,8 +17,7 @@ class LoginScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(top: Sizes.dimen_32.h),
               child: Logo(
-                key: const ValueKey('logo_key'),
-                height: Sizes.dimen_12.h,
+                height: Sizes.dimen_24.h,
               ),
             ),
             Expanded(

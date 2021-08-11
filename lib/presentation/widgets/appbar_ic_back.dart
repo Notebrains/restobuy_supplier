@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-Widget appBarIcBack (BuildContext context ,String text){
+PreferredSizeWidget appBarIcBack (BuildContext context ,String text){
   return AppBar(
-    centerTitle: true,
+    centerTitle: false,
     elevation: 0,
     title: Text(
       text, style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),

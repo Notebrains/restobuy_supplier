@@ -14,11 +14,11 @@ class Toast {
         Color backgroundColor = const Color(0xAA000000),
         textStyle = const TextStyle(fontSize: 15, color: Colors.white),
         double backgroundRadius = 20,
-        required bool rootNavigator,
-        required Border border}) {
+        bool? rootNavigator,
+        Border? border}) {
     ToastView.dismiss();
     ToastView.createView(msg, context, duration, gravity, backgroundColor,
-        textStyle, backgroundRadius, border, rootNavigator);
+        textStyle, backgroundRadius, border!);
   }
 }
 
@@ -43,9 +43,8 @@ class ToastView {
       Color background,
       TextStyle textStyle,
       double backgroundRadius,
-      Border border,
-      bool rootNavigator) async {
-    overlayState = Overlay.of(context, rootOverlay: rootNavigator??false);
+      Border border,) async {
+    overlayState = Overlay.of(context);
 
     _overlayEntry = new OverlayEntry(
       builder: (BuildContext context) => ToastWidget(

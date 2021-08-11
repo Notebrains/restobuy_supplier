@@ -60,26 +60,19 @@ class _LoginFormState extends State<LoginForm> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Padding(
-              padding: EdgeInsets.only(bottom: Sizes.dimen_8.h),
-              child: Text(
-                TranslationConstants.loginToMovieApp.t(context),
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headline5,
-              ),
-            ),
             LabelFieldWidget(
-              label: TranslationConstants.username.t(context),
-              hintText: TranslationConstants.enterTMDbUsername.t(context),
+              label: 'Email Id',
+              hintText: 'Enter email id here',
               controller: _userNameController!,
-              textFieldKey: const ValueKey('username_text_field_key'),
+              ic: Icons.email,
+
             ),
             LabelFieldWidget(
-              label: TranslationConstants.password.t(context),
-              hintText: TranslationConstants.enterPassword.t(context),
+              label: 'Password',
+              hintText:  'Enter password here',
               controller: _passwordController!,
               isPasswordField: true,
-              textFieldKey: const ValueKey('password_text_field_key'),
+              ic: Icons.lock_rounded,
             ),
             BlocConsumer<LoginCubit, LoginState>(
               buildWhen: (previous, current) => current is LoginError,
@@ -87,7 +80,7 @@ class _LoginFormState extends State<LoginForm> {
                 if (state is LoginError)
                   return Text(
                     state.message.t(context),
-                    style: Theme.of(context).textTheme.orangeSubtitle1,
+                    style: TextStyle(color: Colors.black),
                   );
                 return const SizedBox.shrink();
               },
@@ -99,20 +92,18 @@ class _LoginFormState extends State<LoginForm> {
                 );
               },
             ),
+
             Button(
-              onPressed: () => enableSignIn
-                  ? BlocProvider.of<LoginCubit>(context).initiateLogin(
-                      _userNameController?.text ?? '',
-                      _passwordController?.text ?? '',
-                    )
-                  : null,
-              text: TranslationConstants.signIn,
-              isEnabled: enableSignIn,
+              onPressed: (){
+
+              },
+              text: 'Login',
             ),
             Button(
-              onPressed: () =>
-                  BlocProvider.of<LoginCubit>(context).initiateGuestLogin(),
-              text: TranslationConstants.guestSignIn,
+              onPressed: (){
+
+              },
+              text: 'Forgot Password',
             ),
           ],
         ),

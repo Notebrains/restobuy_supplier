@@ -9,7 +9,7 @@ import '../../common/extensions/size_extensions.dart';
 import '../../common/screenutil/screenutil.dart';
 import '../blocs/search_movie/search_movie_cubit.dart';
 import '../journeys/search_movie/custom_search_movie_delegate.dart';
-import 'logo.dart';
+
 
 class MovieAppBar extends StatelessWidget {
   @override
@@ -34,7 +34,7 @@ class MovieAppBar extends StatelessWidget {
                   : AppColor.vulcan,
             ),
           ),
-          Expanded(child: Logo(height: Sizes.dimen_14)),
+          //Expanded(child: Logo(height: Sizes.dimen_14)),
           IconButton(
             onPressed: () {
               showSearch(
