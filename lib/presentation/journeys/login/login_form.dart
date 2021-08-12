@@ -74,7 +74,7 @@ class _LoginFormState extends State<LoginForm> {
               isPasswordField: true,
               ic: Icons.lock_rounded,
             ),
-            BlocConsumer<LoginCubit, LoginState>(
+            /*BlocConsumer<LoginCubit, LoginState>(
               buildWhen: (previous, current) => current is LoginError,
               builder: (context, state) {
                 if (state is LoginError)
@@ -86,16 +86,15 @@ class _LoginFormState extends State<LoginForm> {
               },
               listenWhen: (previous, current) => current is LoginSuccess,
               listener: (context, state) {
-                Navigator.of(context).pushNamedAndRemoveUntil(
-                  RouteList.home,
-                  (route) => false,
-                );
+
               },
-            ),
+            ),*/
 
             Button(
               onPressed: (){
-
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  RouteList.home_screen, (route) => false,
+                );
               },
               text: 'Login',
             ),

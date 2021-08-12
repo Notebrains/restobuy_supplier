@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 PreferredSizeWidget appBarIcBack (BuildContext context ,String text){
   return AppBar(
     centerTitle: false,
-    elevation: 0,
+    elevation: 3,
     title: Text(
       text, style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
     ),

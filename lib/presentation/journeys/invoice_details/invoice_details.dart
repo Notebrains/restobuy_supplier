@@ -69,6 +69,7 @@ class InvoiceDetails extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           icon: Icons.picture_as_pdf_rounded,
                           icColor: Colors.red,
+                        isCenter: true,
                       ),
 
                       Txt(
@@ -224,6 +225,7 @@ class InvoiceDetails extends StatelessWidget {
                                 fontWeight: FontWeight.normal,
                                 padding: 3,
                                 onTap: () {
+
                                 },
                               ),
 

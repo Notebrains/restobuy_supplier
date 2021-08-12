@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animator/flutter_animator.dart';
+import 'package:restobuy_supplier_flutter/common/constants/route_constants.dart';
 import 'package:restobuy_supplier_flutter/common/constants/strings.dart';
 import 'package:restobuy_supplier_flutter/presentation/widgets/appbar_ic_back.dart';
 import 'package:restobuy_supplier_flutter/presentation/widgets/cached_net_img_radius.dart';
@@ -34,20 +35,15 @@ class Product extends StatelessWidget{
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            cachedNetImgWithRadius(
-                                Strings.imgUrlTestSupplyProduct, 200, 130, 5),
+                            cachedNetImgWithRadius(Strings.imgUrlTestSupplyProduct, 200, 110, 5),
 
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8, bottom: 8),
-                              child: Txt(
-                                  txt: 'Product Title', txtColor: Colors.black, txtSize: 16, fontWeight: FontWeight.bold, padding: 0, onTap: () {}),
-                            ),
-
+                            Txt(
+                                txt: 'Product Title', txtColor: Colors.black, txtSize: 16, fontWeight: FontWeight.bold, padding: 0, onTap: () {}),
                           ],
                         ),
                       ),
                       onTap: () {
-                        //openPage(context, categoryList[index].category);
+                        Navigator.of(context).pushNamed(RouteList.product_details);
                       },
                     );
                   }),

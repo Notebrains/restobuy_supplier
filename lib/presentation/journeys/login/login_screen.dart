@@ -16,14 +16,10 @@ class LoginScreen extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.only(top: Sizes.dimen_32.h),
-              child: Logo(
-                height: Sizes.dimen_24.h,
-              ),
+              child: Logo(height: 200,),
             ),
             Expanded(
-              child: LoginForm(
-                key: const ValueKey('login_form_key'),
-              ),
+              child: LoginForm(),
             ),
           ],
         ),

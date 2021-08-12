@@ -44,7 +44,7 @@ class LabelFieldWidget extends StatelessWidget {
                 prefixIcon: Icon(ic, color: Colors.grey,),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                borderSide: BorderSide(color: Colors.grey.shade100, width: 2),
+                borderSide: BorderSide(color: Colors.grey.shade100, width: 1),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),

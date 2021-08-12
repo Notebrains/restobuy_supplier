@@ -4,7 +4,7 @@ class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Image.asset('assets/images/img_splash_screen.png',
+      body: Image.asset('assets/images/splash_screen.png',
         fit: BoxFit.cover,
         width: double.infinity,
         height:  double.infinity,

@@ -17,9 +17,9 @@ class Logo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      'assets/icons/pngs/tmdb_logo.png',
-      height: height.h,
-      width: height.h,
+      'assets/images/logo_vertical.png',
+      height: height.w,
+      width: height.w,
     );
   }
 }

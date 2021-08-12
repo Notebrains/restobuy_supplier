@@ -5,18 +5,21 @@ import 'package:restobuy_supplier_flutter/presentation/widgets/txt_with_width.da
 
 class RequisitionListWidget extends StatelessWidget {
   final int index;
+  final bool isRequisitionTabSelected;
   final Function(int index) onTapOnList;
   final Function onRefreshed;
 
   RequisitionListWidget({
     Key? key,
     required this.index,
+    required this.isRequisitionTabSelected,
     required this.onTapOnList,
     required this.onRefreshed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print('----isRequisitionTabSelected : $isRequisitionTabSelected');
     if ('ssdsd'.isNotEmpty) {
       return InkWell(
         child: Container(
@@ -55,9 +58,9 @@ class RequisitionListWidget extends StatelessWidget {
                   ),
 
                   Visibility(
-                    visible: false,
+                    visible: !isRequisitionTabSelected,
                     child: Txt(
-                      txt: 'Posted    Next Delivery',
+                      txt: 'Posted    Next Delivery     Duration',
                       txtColor: Colors.black54,
                       txtSize: 14,
                       fontWeight: FontWeight.normal,
@@ -68,7 +71,7 @@ class RequisitionListWidget extends StatelessWidget {
                   ),
 
                   Txt(
-                    txt: '29-07-21    13.40',
+                    txt: '29-07-21    13.40              1 day',
                     txtColor: Colors.black54,
                     txtSize: 14,
                     fontWeight: FontWeight.normal,

@@ -21,6 +21,7 @@ class Requisition extends StatefulWidget {
 class _RequisitionsState extends State<Requisition> {
   TextEditingController controller = TextEditingController();
   String fromDateStr = '', toDateStr = '';
+  bool isRequisitionTabSelected = true;
   late DateTime fromDate;
   late DateTime toDate;
   late List<String> _searchResult = [];
@@ -44,87 +45,68 @@ class _RequisitionsState extends State<Requisition> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                InkWell(
-                  child: Container(
-                    height: 40,
-                    margin: const EdgeInsets.only(bottom: 5, top: 8, left: 16, right: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(5.0),
-                      border: Border.all(color: Colors.amber),
-                    ),
-                    alignment: Alignment.center,
-                    child:
-                    Txt(
-                      txt: 'Requisition',
-                      txtColor: Colors.amber,
-                      txtSize: 14,
-                      fontWeight: FontWeight.bold,
-                      padding: 6,
-                      onTap: (){},
-                    ),
+                Container(
+                  height: 40,
+                  margin: const EdgeInsets.only(bottom: 5, top: 12, left: 16, right: 4),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5.0),
+                    border: Border.all(color: isRequisitionTabSelected? Colors.amber : Colors.grey.shade50),
                   ),
-                  onTap: () {
-                  },
+                  alignment: Alignment.center,
+                  child:
+                  Txt(
+                    txt: '  Requisition  ',
+                    txtColor: isRequisitionTabSelected? Colors.amber : Colors.black,
+                    txtSize: 16,
+                    fontWeight: FontWeight.bold,
+                    padding: 6,
+                    onTap: (){
+                      print('---- 1:');
+                      setState(() {
+                        isRequisitionTabSelected = true;
+                      });
+                    },
+                  ),
                 ),
-                InkWell(
-                  child: Container(
-                    height: 40,
-                    margin: const EdgeInsets.only(bottom: 5, top: 8, left: 4, right: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(5.0),
-                      border: Border.all(color: Colors.grey.shade50),
-                    ),
-                    alignment: Alignment.center,
-                    child:
-                    Txt(
-                      txt: 'Recurring Requisition',
-                      txtColor: Colors.black,
-                      txtSize: 14,
-                      fontWeight: FontWeight.normal,
-                      padding: 6,
-                      onTap: (){},
-                    ),
+                Container(
+                  height: 45,
+                  margin: const EdgeInsets.only(bottom: 5, top: 12, left: 4, right: 4),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5.0),
+                    border: Border.all(color: isRequisitionTabSelected? Colors.grey.shade50: Colors.amber),
                   ),
-                  onTap: () {
-
-                  },
+                  alignment: Alignment.center,
+                  child:
+                  Txt(
+                    txt: '  Recurring Requisition  ',
+                    txtColor: isRequisitionTabSelected? Colors.black : Colors.amber,
+                    txtSize: 16,
+                    fontWeight: FontWeight.normal,
+                    padding: 6,
+                    onTap: (){
+                      print('---- 2:');
+                      setState(() {
+                        isRequisitionTabSelected = false;
+                      });
+                    },
+                  ),
                 ),
 
               ],
             ),
           ),
+
           Expanded(
-            child: LiquidPullToRefresh(
-              backgroundColor: Colors.blueAccent,
-              color: Colors.white,
-              onRefresh: () {
-                return Future.delayed(
-                  Duration(milliseconds: 700), () {
-                  buildUi();
-                },
-                );
-              },
-              child: buildUi(),
-            ),
+            child: buildUi(),
           ),
         ],
-      ),
-
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.add, color: Colors.white, size: 29,),
-        backgroundColor: Colors.amber,
-        tooltip: 'Pressed',
-        elevation: 5,
-        splashColor: Colors.grey,
       ),
     );
   }
 
   Widget buildUi() {
-    //print('----${offerList.length}');
     return SlideInUp(
       child: Container(
         margin: EdgeInsets.only(bottom: 12),
@@ -134,6 +116,7 @@ class _RequisitionsState extends State<Requisition> {
               return RequisitionListWidget(
                 //response: _searchResult,
                 index: index,
+                isRequisitionTabSelected: isRequisitionTabSelected,
                 onTapOnList: (intValue){
                   Navigator.of(context).pushNamed(RouteList.requisitions_details);
                 },

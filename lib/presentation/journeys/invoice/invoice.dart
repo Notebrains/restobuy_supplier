@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animator/flutter_animator.dart';
+import 'package:restobuy_supplier_flutter/common/constants/route_constants.dart';
 import 'package:restobuy_supplier_flutter/common/extensions/common_fun.dart';
 import 'package:restobuy_supplier_flutter/presentation/journeys/invoice_details/invoice_details.dart';
 import 'package:restobuy_supplier_flutter/presentation/libraries/liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
@@ -60,7 +61,9 @@ class _OrdersState extends State<Invoice> {
                           txtSize: 14,
                           fontWeight: FontWeight.normal,
                           icon: Icons.date_range_outlined,
-                          icColor: Colors.grey),
+                          icColor: Colors.grey,
+                          isCenter: true,
+                      ),
                     ),
                     onTap: () {
                       pickDateFromDatePicker();
@@ -86,6 +89,7 @@ class _OrdersState extends State<Invoice> {
                         fontWeight: FontWeight.normal,
                         icon: Icons.date_range_outlined,
                         icColor: Colors.grey,
+                        isCenter: true,
                       ),
                     ),
                     onTap: () {
@@ -113,6 +117,7 @@ class _OrdersState extends State<Invoice> {
                         fontWeight: FontWeight.normal,
                         icon: Icons.sort_rounded,
                         icColor: Colors.grey,
+                        isCenter: true,
                       ),
                     ),
                     onTap: () {
@@ -169,7 +174,9 @@ class _OrdersState extends State<Invoice> {
       ),
 
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushNamed(RouteList.invoice_raise);
+        },
         child: Icon(Icons.add, color: Colors.white, size: 29,),
         backgroundColor: Colors.amber,
         tooltip: 'Pressed',

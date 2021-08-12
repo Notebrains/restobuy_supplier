@@ -7,6 +7,7 @@ class TxtIcRow extends StatelessWidget {
   final FontWeight fontWeight;
   final IconData icon;
   final Color icColor;
+  final bool isCenter;
 
   const TxtIcRow({
     Key? key,
@@ -16,12 +17,13 @@ class TxtIcRow extends StatelessWidget {
     required this.fontWeight,
     required this.icon,
     required this.icColor,
+    required this.isCenter,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: isCenter? MainAxisAlignment.center: MainAxisAlignment.start,
       children: [
         Icon(
           icon,
@@ -30,7 +32,7 @@ class TxtIcRow extends StatelessWidget {
         ),
 
         Padding(
-          padding: const EdgeInsets.only(left: 3, top: 5, bottom: 5),
+          padding: const EdgeInsets.only(left: 5, top: 5, bottom: 5),
           child: Text(
             txt,
             style: TextStyle(fontFamily: 'Roboto', fontWeight: fontWeight, fontSize: txtSize, color: txtColor),

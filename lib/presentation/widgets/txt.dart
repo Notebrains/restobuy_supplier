@@ -31,7 +31,9 @@ class Txt extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
         ),
 
-        onTap: null,
+        onTap: (){
+          onTap();
+        },
       ),
     );
   }

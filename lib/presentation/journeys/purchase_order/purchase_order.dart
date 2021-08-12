@@ -3,8 +3,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animator/flutter_animator.dart';
 import 'package:restobuy_supplier_flutter/common/constants/route_constants.dart';
 import 'package:restobuy_supplier_flutter/common/extensions/common_fun.dart';
-import 'package:restobuy_supplier_flutter/presentation/journeys/invoice_details/invoice_details.dart';
-import 'package:restobuy_supplier_flutter/presentation/libraries/liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:restobuy_supplier_flutter/presentation/widgets/appbar_ic_back.dart';
 import 'package:restobuy_supplier_flutter/presentation/widgets/txt_ic_row.dart';
 
@@ -62,7 +60,8 @@ class _OrdersState extends State<PurchaseOrder> {
                           txtSize: 14,
                           fontWeight: FontWeight.normal,
                           icon: Icons.date_range_outlined,
-                          icColor: Colors.grey),
+                          icColor: Colors.grey,
+                        isCenter: true,),
                     ),
                     onTap: () {
                       pickDateFromDatePicker();
@@ -88,6 +87,7 @@ class _OrdersState extends State<PurchaseOrder> {
                         fontWeight: FontWeight.normal,
                         icon: Icons.date_range_outlined,
                         icColor: Colors.grey,
+                        isCenter: true,
                       ),
                     ),
                     onTap: () {
@@ -115,6 +115,7 @@ class _OrdersState extends State<PurchaseOrder> {
                         fontWeight: FontWeight.normal,
                         icon: Icons.sort_rounded,
                         icColor: Colors.grey,
+                        isCenter: true,
                       ),
                     ),
                     onTap: () {
@@ -154,29 +155,9 @@ class _OrdersState extends State<PurchaseOrder> {
             ),
           ),
           Expanded(
-            child: LiquidPullToRefresh(
-              backgroundColor: Colors.blueAccent,
-              color: Colors.white,
-              onRefresh: () {
-                return Future.delayed(
-                  Duration(milliseconds: 700), () {
-                  buildUi();
-                },
-                );
-              },
-              child: buildUi(),
-            ),
+            child: buildUi(),
           ),
         ],
-      ),
-
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.add, color: Colors.white, size: 29,),
-        backgroundColor: Colors.amber,
-        tooltip: 'Pressed',
-        elevation: 5,
-        splashColor: Colors.grey,
       ),
     );
   }

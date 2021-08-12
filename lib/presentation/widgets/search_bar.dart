@@ -17,7 +17,11 @@ class SearchBar extends StatelessWidget{
           leading: Icon(Icons.search),
           title: TextField(
             //controller: controller,
-            decoration: InputDecoration(hintText: 'Search anything...', border: InputBorder.none),
+            decoration: InputDecoration(
+              hintText: 'Search anything...',
+              border: InputBorder.none,
+              enabledBorder: InputBorder.none
+            ),
             //onChanged: onSearchTextChanged,
           ),
           trailing: Visibility(
@@ -34,5 +38,4 @@ class SearchBar extends StatelessWidget{
       ),
     );
   }
-
 }

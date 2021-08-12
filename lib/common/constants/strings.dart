@@ -29,7 +29,7 @@ class Strings {
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt consectetur adipiscing elit, sed do eiusmod tempor incididunt.';
   static const String txt_lorem_ipsum_small = 'Lorem ipsum dolor sit\nconsecte pcing.';
   static const String txt_lorem_ipsum_mid = 'Lorem ipsum dolor sit consecte pcing dolor sit consecte pcing.';
-  static const String txt_review = 'This is one of the finest books that I have come across for group work. This book helps in understanding the whole concept of Group Work and gives a fine view of the subject, very good...understanding the topics of principles, process and other topics is explained very aptly.';
+  static const String txt_review = 'This is one of the finest books that I have come across for group work. This book helps in understanding the whole concept of Group Work.';
 
   static const String welcomeScreenTitle = '''Ready to find your favorite lesson?''';
 

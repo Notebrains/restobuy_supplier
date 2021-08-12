@@ -16,78 +16,73 @@ class PurchaseOrderDetails extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       body: Column(
         children: [
-          InkWell(
-            child: Container(
-              margin: const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Txt(
-                        txt: 'ORDER ID - 23232323',
-                        txtColor: Colors.amber,
+          Container(
+            margin: const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Txt(
+                      txt: 'ORDER ID - 23232323',
+                      txtColor: Colors.amber,
+                      txtSize: 14,
+                      fontWeight: FontWeight.bold,
+                      padding: 5,
+                      onTap:  (){},
+                    ),
+
+                    Txt(
+                      txt: 'Restaurant Name',
+                      txtColor: Colors.black,
+                      txtSize: 16,
+                      fontWeight: FontWeight.bold,
+                      padding: 5,
+                      onTap: () {
+                      },
+                    ),
+
+                    Txt(
+                      txt: '29-07-21  13.40',
+                      txtColor: Colors.black54,
+                      txtSize: 14,
+                      fontWeight: FontWeight.normal,
+                      padding: 5,
+                      onTap: () {
+                      },
+                    ),
+                  ],
+                ),
+
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TxtIcRow(
+                        txt: 'Download PO',
+                        txtColor: Colors.red,
                         txtSize: 14,
                         fontWeight: FontWeight.bold,
-                        padding: 5,
-                        onTap:  (){},
-                      ),
+                        icon: Icons.picture_as_pdf_rounded,
+                        icColor: Colors.red,
+                      isCenter: true,
+                    ),
 
-                      Txt(
-                        txt: 'Restaurant Name',
-                        txtColor: Colors.black,
-                        txtSize: 16,
-                        fontWeight: FontWeight.bold,
-                        padding: 5,
-                        onTap: () {
-                        },
-                      ),
-
-                      Txt(
-                        txt: '29-07-21  13.40',
-                        txtColor: Colors.black54,
-                        txtSize: 14,
-                        fontWeight: FontWeight.normal,
-                        padding: 5,
-                        onTap: () {
-                        },
-                      ),
-                    ],
-                  ),
-
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TxtIcRow(
-                          txt: 'Download PO',
-                          txtColor: Colors.red,
-                          txtSize: 14,
-                          fontWeight: FontWeight.bold,
-                          icon: Icons.picture_as_pdf_rounded,
-                          icColor: Colors.red,
-                      ),
-
-                      Txt(
-                        txt: 'Total Amount: \$300',
-                        txtColor: Colors.black,
-                        txtSize: 14,
-                        fontWeight: FontWeight.bold,
-                        padding: 3,
-                        onTap: (){},
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                    Txt(
+                      txt: 'Total Amount: \$300',
+                      txtColor: Colors.black,
+                      txtSize: 14,
+                      fontWeight: FontWeight.bold,
+                      padding: 3,
+                      onTap: (){},
+                    ),
+                  ],
+                ),
+              ],
             ),
-
-            onTap: (){
-
-            },
           ),
 
           buildListUi(),
