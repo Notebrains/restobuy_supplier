@@ -40,7 +40,8 @@ class RootApp extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-              home: Splash());
+              home: Splash(),
+          );
         } else {
           ScreenUtil.init();
           // Loading is done, return the app:

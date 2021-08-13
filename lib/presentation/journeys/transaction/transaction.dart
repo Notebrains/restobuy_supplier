@@ -48,7 +48,7 @@ class _OrdersState extends State<Transaction> {
                 //response: _searchResult,
                 index: index,
                 onTapOnList: (intValue){
-                  Navigator.of(context).pushNamed(RouteList.purchase_order_details);
+                  //Navigator.of(context).pushNamed(RouteList.purchase_order_details);
                 },
                 onRefreshed: () {
 
