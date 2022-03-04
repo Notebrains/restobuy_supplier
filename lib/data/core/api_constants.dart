@@ -1,7 +1,55 @@
 class ApiConstants {
   ApiConstants._();
 
-  static const String BASE_URL = "https://api.themoviedb.org/3/";
-  static const String API_KEY = "f33521953035af3fc3162fe1ac22e60c";
-  static const String BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w500";
+  static const String BASE_URL = "https://mridayaitservices.com/demo/restobuy/api/supplier/";
+
+  static const String updateDeviceToken = "updatedevicetoken";
+  static const String notifications = "notification";
+  static const String clearNotifications = "delete_notification";
+  static const String login = "login";
+  static const String logout = "logout";
+  static const String forgotPassword = "forgotpassword";
+  static const String dashboard = "dashboard";
+  static const String profile = "profile";
+  static const String updateProfile = "updateprofile";
+  static const String invoice = "invoice";
+  static const String invoicePoPrice = "get_po_price";
+  static const String getInvoiceId = "get_invoice_id";
+  static const String addInvoice = "addinvoice";
+  static const String deleteInvoice = "deleteinvoice";
+  static const String viewInvoice = "view_invoice";
+  static const String getInvoiceRestaurant = "get_restaurant";
+  static const String getPO = "get_purchase_order";
+  static const String transaction = "transaction";
+  static const String viewTransaction = "view_transaction";
+  static const String addTransaction = "addtransaction";
+  static const String viewTransactionPriceTransactionId = "get_transaction_price_transaction_id";
+  static const String getInvoice = "getinvoice";
+  static const String requisitions = "requisitions";
+  static const String requisitionProduct = "requisitions/requisition-product";
+  static const String submitRequisitions = "submit_requisitions";
+  static const String requisitionCategory = "category";
+  static const String requisitionCategoryProduct = "requisitions/get_product_by_category";
+  static const String requisitionProductVariant = "requisitions/get_product_variant";
+  static const String requisitionSendApproval = "requisitions/send_approval";
+  static const String product = "product";
+  static const String addProduct = "addproduct";
+  static const String updateProduct = "updateproduct";
+  static const String productDetails = "productdetails";
+  static const String deleteProduct = "deleteproduct";
+  static const String deleteIamge = "deleteimage";
+  static const String review = "review";
+  static const String deleteReview = "deletereview";
+  static const String updateReview = "updatereview";
+  static const String addReview = "addreview";
+  static const String purchaseOrders = "purchase-orders";
+  static const String purchaseOrdersDetails = "purchase-orders-details";
+  static const String addDisputes = "adddisputes";
+  static const String disputes = "disputes";
+  static const String chats = "disputes/chat";
+  static const String deleteDisputes = "deletedisputes";
+  static const String storeChatMessage = "disputes/store_chat_message";
+  static const String createPurchaseOrder = "create_po";
+  static const String getDisputeIdAndRestaurant = "get_dispute_id_and_restaurant";
+  static const String category = "category";
 }

@@ -6,6 +6,8 @@ import '../../widgets/logo.dart';
 import 'login_form.dart';
 
 class LoginScreen extends StatelessWidget {
+  const LoginScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,9 +18,9 @@ class LoginScreen extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.only(top: Sizes.dimen_32.h),
-              child: Logo(height: 200,),
+              child: const Logo(height: 200,),
             ),
-            Expanded(
+            const Expanded(
               child: LoginForm(),
             ),
           ],

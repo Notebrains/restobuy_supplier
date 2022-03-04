@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 
-PreferredSizeWidget appBarIcBack (BuildContext context ,String text){
+PreferredSizeWidget appBarIcBack (BuildContext context, String text){
   return AppBar(
     centerTitle: false,
-    elevation: 3,
+    elevation: 0,
     title: Text(
-      text, style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
+      text, style: const TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
     ),
     backgroundColor: Colors.white,
     leading: GestureDetector(
-      child: Icon(
-        Icons.arrow_back_ios,
-        color: Colors.black87,// add custom icons also
+      child: const Icon(
+        Icons.arrow_back_ios_rounded,
+        color: Colors.black,
+        size: 22,
       ),
       onTap: (){
         Navigator.pop(context);
       },
-
     ),
   );
 }

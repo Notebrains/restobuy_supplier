@@ -28,30 +28,32 @@ class LabelFieldWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            label.toUpperCase(),
-            style: TextStyle(color: Colors.black),
-            textAlign: TextAlign.start,
+          Padding(
+            padding: const EdgeInsets.only(bottom: 5),
+            child: Text(
+              label.toUpperCase(),
+              style: const TextStyle(color: Colors.black),
+              textAlign: TextAlign.start,
+            ),
           ),
           TextField(
             key: textFieldKey,
             obscureText: isPasswordField,
             obscuringCharacter: '*',
             controller: controller,
-            style: TextStyle(color: Colors.black),
+            style: const TextStyle(color: Colors.black),
             decoration: InputDecoration(
                 hintText: hintText,
                 prefixIcon: Icon(ic, color: Colors.grey,),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                borderSide: BorderSide(color: Colors.grey.shade100, width: 1),
+                borderRadius: const BorderRadius.all (Radius.circular(5.0)),
+                borderSide: BorderSide(color: Colors.grey.shade200, width: 1),
               ),
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 borderSide: BorderSide(color: Colors.amber, width: 1),
               ),
             ),
-
           ),
         ],
       ),

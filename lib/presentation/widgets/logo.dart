@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:restobuy_supplier_flutter/presentation/blocs/theme/theme_cubit.dart';
-import 'package:restobuy_supplier_flutter/presentation/themes/theme_color.dart';
 
 import '../../common/extensions/size_extensions.dart';
 

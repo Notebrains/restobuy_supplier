@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:restobuy_supplier_flutter/data/models/PurchaseOrderApiResModel.dart';
+import 'package:restobuy_supplier_flutter/presentation/themes/theme_color.dart';
 import 'package:restobuy_supplier_flutter/presentation/widgets/no_data_found.dart';
 import 'package:restobuy_supplier_flutter/presentation/widgets/txt.dart';
-import 'package:restobuy_supplier_flutter/presentation/widgets/txt_with_width.dart';
 
 class PurchaseOrderListWidget extends StatelessWidget {
+  final List<Response>? response;
   final int index;
   final Function(int index) onTapOnList;
   final Function onRefreshed;
 
-  PurchaseOrderListWidget({
+  const PurchaseOrderListWidget({
     Key? key,
+    required this.response,
     required this.index,
     required this.onTapOnList,
     required this.onRefreshed,
@@ -17,7 +20,7 @@ class PurchaseOrderListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if ('ssdsd'.isNotEmpty) {
+    if (response!.isNotEmpty) {
       return InkWell(
         child: Container(
           padding: const EdgeInsets.all(16),
@@ -27,68 +30,81 @@ class PurchaseOrderListWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(5.0),
             border: Border.all(color: Colors.grey.shade300),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Column(
             children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Txt(
-                    txt: 'ORDER ID - 23232323',
-                    txtColor: Colors.amber,
-                    txtSize: 14,
-                    fontWeight: FontWeight.bold,
-                    padding: 5,
-                    onTap:  (){},
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Txt(
+                        txt: 'PO id - ${response![index].orderId}',
+                        txtColor: AppColor.appTxtAmber,
+                        txtSize: 14,
+                        fontWeight: FontWeight.bold,
+                        padding: 5
+                      ),
+
+                      Txt(
+                        txt: response![index].restaurantName??'',
+                        txtColor: Colors.black,
+                        txtSize: 16,
+                        fontWeight: FontWeight.bold,
+                        padding: 5,
+                      ),
+
+                      Txt(
+                        txt: response![index].datetime??'',
+                        txtColor: Colors.black54,
+                        txtSize: 14,
+                        fontWeight: FontWeight.normal,
+                        padding: 5,
+                      ),
+                    ],
                   ),
 
-                  Txt(
-                    txt: 'Restaurant Name',
-                    txtColor: Colors.black,
-                    txtSize: 16,
-                    fontWeight: FontWeight.bold,
-                    padding: 5,
-                    onTap: () {
-                    },
-                  ),
-
-                  Txt(
-                    txt: '29-07-21  13.40',
-                    txtColor: Colors.black54,
-                    txtSize: 14,
-                    fontWeight: FontWeight.normal,
-                    padding: 5,
-                    onTap: () {
-                    },
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Txt(
+                        txt: '${response![index].totalItems??''} Items',
+                        txtColor: Colors.black,
+                        txtSize: 14,
+                        fontWeight: FontWeight.normal,
+                        padding: 5,
+                      ),
+                      Txt(
+                        txt: response![index].purchaseAmount??'',
+                        txtColor: Colors.black,
+                        txtSize: 16,
+                        fontWeight: FontWeight.bold,
+                        padding: 5,
+                      ),
+                    ],
                   ),
                 ],
               ),
 
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Txt(
-                    txt: '5 Items',
+              /* Container(
+                  height: 40,
+                  margin: const EdgeInsets.only(top: 8, left: 4,),
+                  decoration: BoxDecoration(
+                    color: Colors.pinkAccent.withOpacity(0.1),
+                    border: Border.all(color: Colors.grey.shade400),
+                  ),
+                  alignment: Alignment.center,
+                  child: const Txt(
+                    txt: 'Delete',
                     txtColor: Colors.black,
                     txtSize: 14,
                     fontWeight: FontWeight.normal,
-                    padding: 5,
-                    onTap: () {
-                    },
+                    padding: 3,
                   ),
-                  Txt(
-                    txt: '\$100.00',
-                    txtColor: Colors.black,
-                    txtSize: 16,
-                    fontWeight: FontWeight.bold,
-                    padding: 5,
-                    onTap: (){},
-                  ),
-                ],
-              ),
+              ),*/
             ],
           ),
         ),
@@ -98,9 +114,8 @@ class PurchaseOrderListWidget extends StatelessWidget {
         },
       );
     } else {
-      return NoDataFound(txt: 'No data found',
+      return NoDataFound(txt: 'No data found!',
         onRefresh: (){
-          print('---- : -----');
           onRefreshed();
         },
       );

@@ -16,10 +16,10 @@ class Separator extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(Sizes.dimen_1.h)),
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           colors: [
             AppColor.violet,
-            AppColor.royalBlue,
+            AppColor.primaryColor,
           ],
         ),
       ),

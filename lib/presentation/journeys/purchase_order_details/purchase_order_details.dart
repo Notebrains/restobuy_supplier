@@ -1,104 +1,185 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animator/flutter_animator.dart';
-import 'package:restobuy_supplier_flutter/common/constants/strings.dart';
-import 'package:restobuy_supplier_flutter/presentation/journeys/invoice/invoice_list_widget.dart';
+import 'package:restobuy_supplier_flutter/data/core/api_constants.dart';
+import 'package:restobuy_supplier_flutter/data/data_sources/api_functions.dart';
+import 'package:restobuy_supplier_flutter/data/models/PurchaseOrderDetailsApiResModel.dart';
+import 'package:restobuy_supplier_flutter/presentation/libraries/cached_pdfview.dart';
+import 'package:restobuy_supplier_flutter/presentation/themes/theme_color.dart';
 import 'package:restobuy_supplier_flutter/presentation/widgets/appbar_ic_back.dart';
 import 'package:restobuy_supplier_flutter/presentation/widgets/cached_net_img_radius.dart';
+import 'package:restobuy_supplier_flutter/presentation/widgets/lottie_loading.dart';
+import 'package:restobuy_supplier_flutter/presentation/widgets/no_data_found.dart';
 import 'package:restobuy_supplier_flutter/presentation/widgets/txt.dart';
 import 'package:restobuy_supplier_flutter/presentation/widgets/txt_ic_row.dart';
 
-class PurchaseOrderDetails extends StatelessWidget {
+class PurchaseOrderDetails extends StatefulWidget {
+  final String orderId;
+  final String purchaseOrderId;
+  final String purchaseAmount;
+  final String supplierName;
+  final String dateTime;
+  final String totalItems;
+
+  const PurchaseOrderDetails({Key? key, required this.orderId, required this.purchaseOrderId, required this.purchaseAmount,
+    required this.supplierName, required this.dateTime, required this.totalItems}) : super(key: key);
+
+
+  @override
+  State<PurchaseOrderDetails> createState() => _PurchaseOrderDetailsState();
+}
+
+class _PurchaseOrderDetailsState extends State<PurchaseOrderDetails> {
+
+  late Future<bool> _future;
+  late bool isApiDataAvailable = false;
+  PurchaseOrderDetailsApiResModel model = PurchaseOrderDetailsApiResModel();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _future = getDataFromApi();
+  }
+
+
+  Future<bool> getDataFromApi() async {
+    try{
+
+      Map<String, dynamic> body = {};
+      body["purchase_order_id"] = widget.purchaseOrderId;
+
+      await ApiFun.apiPostWithBody(ApiConstants.purchaseOrdersDetails, body).then((jsonDecodeData) => {
+        model = PurchaseOrderDetailsApiResModel.fromJson(jsonDecodeData),
+      });
+
+      if(model.status == 1) {
+        isApiDataAvailable = true;
+      }
+    } catch(error){
+      print("Error: $error");
+    }
+    return isApiDataAvailable;
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarIcBack(context, 'Purchase Order Details'),
+      appBar: appBarIcBack( context, 'Details'),
       backgroundColor: Colors.grey[100],
       resizeToAvoidBottomInset: false,
-      body: Column(
-        children: [
-          Container(
-            margin: const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Txt(
-                      txt: 'ORDER ID - 23232323',
-                      txtColor: Colors.amber,
-                      txtSize: 14,
-                      fontWeight: FontWeight.bold,
-                      padding: 5,
-                      onTap:  (){},
-                    ),
+      body: FutureBuilder(
+        future: _future,
+        builder: (context, snapShot){
+          if(snapShot.hasData){
+            if(isApiDataAvailable){
+              return Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Txt(
+                              txt: 'PO id - ${widget.orderId}',
+                              txtColor: AppColor.appTxtAmber,
+                              txtSize: 14,
+                              fontWeight: FontWeight.bold,
+                              padding: 2,
+                            ),
 
-                    Txt(
-                      txt: 'Restaurant Name',
-                      txtColor: Colors.black,
-                      txtSize: 16,
-                      fontWeight: FontWeight.bold,
-                      padding: 5,
-                      onTap: () {
-                      },
-                    ),
+                            Txt(
+                              txt: widget.supplierName,
+                              txtColor: Colors.black,
+                              txtSize: 14,
+                              fontWeight: FontWeight.bold,
+                              padding: 2,
+                            ),
 
-                    Txt(
-                      txt: '29-07-21  13.40',
-                      txtColor: Colors.black54,
-                      txtSize: 14,
-                      fontWeight: FontWeight.normal,
-                      padding: 5,
-                      onTap: () {
-                      },
-                    ),
-                  ],
-                ),
+                            TxtIcRow(
+                              txt: widget.dateTime,
+                              txtColor: Colors.black54,
+                              txtSize: 14,
+                              fontWeight: FontWeight.normal,
+                              icon: Icons.date_range_outlined,
+                              icColor: Colors.black54,
+                              isCenter: true,
+                            ),
+                          ],
+                        ),
 
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TxtIcRow(
-                        txt: 'Download PO',
-                        txtColor: Colors.red,
-                        txtSize: 14,
-                        fontWeight: FontWeight.bold,
-                        icon: Icons.picture_as_pdf_rounded,
-                        icColor: Colors.red,
-                      isCenter: true,
-                    ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            InkWell(
+                              child: const TxtIcRow(
+                                txt: 'Download PO',
+                                txtColor: Colors.red,
+                                txtSize: 14,
+                                fontWeight: FontWeight.bold,
+                                icon: Icons.picture_as_pdf_rounded,
+                                icColor: Colors.red,
+                                isCenter: true,
+                              ),
 
-                    Txt(
-                      txt: 'Total Amount: \$300',
-                      txtColor: Colors.black,
-                      txtSize: 14,
-                      fontWeight: FontWeight.bold,
-                      padding: 3,
-                      onTap: (){},
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+                              onTap: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => CachedPdfView(pdfUrl: model.response!.pdffile!.pdf?? ''),
+                                  ),
+                                );
+                              },
+                            ),
 
-          buildListUi(),
-        ],
+                            Txt(
+                              txt: 'Sub Total - ${widget.purchaseAmount}',
+                              txtColor: Colors.black,
+                              txtSize: 14,
+                              fontWeight: FontWeight.bold,
+                              padding: 2,
+                            ),
+
+                            Txt(
+                              txt: 'Total Item - ${widget.totalItems}',
+                              txtColor: Colors.black54,
+                              txtSize: 14,
+                              fontWeight: FontWeight.normal,
+                              padding: 2,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  buildListUi(model.response!.products!),
+                ],
+              );
+            }
+            else { return NoDataFound(txt: 'No data found', onRefresh: (){});}
+          } else {
+            return const LottieLoading();
+          }
+        },
       ),
     );
   }
 
-  Widget buildListUi() {
+  Widget buildListUi(List<Products> response) {
     return Expanded(
       child: SlideInUp(
         child: Container(
-          margin: EdgeInsets.only(bottom: 12),
-          color: Colors.grey[100],
+          margin: const EdgeInsets.only(bottom: 12),
+          color: Colors.grey.shade100,
           child: ListView.builder(
-              itemCount: 3,
+              physics: const BouncingScrollPhysics(),
+              itemCount: response.length,
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
                   child: Container(
@@ -119,9 +200,13 @@ class PurchaseOrderDetails extends StatelessWidget {
                       children: [
                         Expanded(
                           flex: 1,
-                          child: cachedNetImgWithRadius(
-                              Strings.imgUrlTestSupplyProduct,
-                              100, 100, 0),
+                          child: Padding(
+                            padding: const EdgeInsets.all(12),
+                            child: cachedNetImgWithRadius(
+                                response[index].image!,
+                                100, 100, 5, BoxFit.cover,
+                            ),
+                          ),
                         ),
 
                         Expanded(
@@ -131,32 +216,35 @@ class PurchaseOrderDetails extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Txt(
-                                txt: 'Product Name',
+                                txt: response[index].productName!,
                                 txtColor: Colors.black,
                                 txtSize: 16,
                                 fontWeight: FontWeight.bold,
-                                padding: 3,
-                                onTap:  (){},
+                                padding: 0,
                               ),
 
                               Txt(
-                                txt: 'QTY-3',
-                                txtColor: Colors.grey.shade600,
+                                txt: 'Price - ${response[index].price!}     Qty - ${response[index].qty!}',
+                                txtColor: Colors.grey.shade700,
                                 txtSize: 14,
                                 fontWeight: FontWeight.normal,
-                                padding: 3,
-                                onTap: () {
-                                },
+                                padding: 0,
                               ),
 
                               Txt(
-                                txt: '\$100.00',
-                                txtColor: Colors.black,
+                                txt: 'Unit - ${response[index].variant!}',
+                                txtColor: Colors.grey.shade700,
                                 txtSize: 14,
-                                fontWeight: FontWeight.bold,
-                                padding: 3,
-                                onTap: () {
-                                },
+                                fontWeight: FontWeight.normal,
+                                padding: 0,
+                              ),
+
+                              Txt(
+                                txt: 'Sub total - ${response[index].subtotal!}',
+                                txtColor: Colors.grey.shade700,
+                                txtSize: 14,
+                                fontWeight: FontWeight.normal,
+                                padding: 0,
                               ),
                             ],
                           ),
@@ -164,8 +252,8 @@ class PurchaseOrderDetails extends StatelessWidget {
                       ],
                     ),
                   ),
-                  onTap: (){
-                  },
+
+                  onTap: (){},
                 );
               }),
         ),

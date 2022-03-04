@@ -11,7 +11,7 @@ class ApiClient {
   ApiClient(this._client);
 
   dynamic get(String path, {Map<dynamic, dynamic>? params}) async {
-    await Future.delayed(Duration(milliseconds: 500));
+    await Future.delayed(const Duration(milliseconds: 500));
     final response = await _client.get(
       getPath(path, params),
       headers: {
@@ -69,7 +69,6 @@ class ApiClient {
       });
     }
 
-    return Uri.parse(
-        '${ApiConstants.BASE_URL}$path?api_key=${ApiConstants.API_KEY}$paramsString');
+    return Uri.parse('${ApiConstants.BASE_URL}$path?$paramsString');
   }
 }

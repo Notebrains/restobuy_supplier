@@ -14,26 +14,26 @@ class StarRating extends StatelessWidget {
   Widget buildStar(BuildContext context, int index) {
     Icon icon;
     if (index >= rating) {
-      icon = new Icon(
+      icon =  Icon(
         Icons.star_border,
         size:  iconSize,
-        color: Colors.amber[600],
+        color: Colors.amber[900],
       );
     }
     else if (index > rating - 1 && index < rating) {
-      icon = new Icon(
+      icon =  Icon(
         Icons.star_half,
         size:  iconSize,
-        color: Colors.amber[600],
+        color: Colors.amber[800],
       );
     } else {
-      icon = new Icon(
+      icon =  Icon(
         Icons.star,
         size:  iconSize,
-        color: Colors.amber[600],
+        color: Colors.amber[800],
       );
     }
-    return new InkResponse(
+    return  InkResponse(
       onTap: onRatingChanged == null ? null : () => onRatingChanged(index + 1.0),
       child: icon,
     );
@@ -41,9 +41,9 @@ class StarRating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: new List.generate(starCount, (index) => buildStar(context, index)));
+    return  Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: List.generate(starCount, (index) => buildStar(context, index),),);
   }
 }

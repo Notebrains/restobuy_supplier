@@ -5,6 +5,8 @@ import 'package:restobuy_supplier_flutter/presentation/widgets/cached_net_img.da
 import 'package:restobuy_supplier_flutter/presentation/widgets/txt_ic_row.dart';
 
 class ProductDetails extends StatelessWidget{
+  const ProductDetails({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +32,7 @@ class ProductDetails extends StatelessWidget{
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      child: Icon(Icons.arrow_back_ios_rounded, color: Colors.black, size: 20,),
+                      child: const Icon(Icons.arrow_back_ios_rounded, color: Colors.black, size: 20,),
                       backgroundColor: Colors.white,
                       tooltip: 'Pressed',
                       elevation: 1,
@@ -67,9 +69,9 @@ class ProductDetails extends StatelessWidget{
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(45.0),
-                  topLeft: Radius.circular(45.0),
+                borderRadius: const BorderRadius.only(
+                  topRight: const Radius.circular(45.0),
+                  topLeft: const Radius.circular(45.0),
                 ),
 
                 boxShadow: [
@@ -79,12 +81,12 @@ class ProductDetails extends StatelessWidget{
                   ),
                 ],
               ),
-              padding: EdgeInsets.only(left: 32, right: 24, top: 45),
+              padding: const EdgeInsets.only(left: 32, right: 24, top: 45),
               child: SingleChildScrollView(
                 child: Column(
                   //mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: const [
                     Text(
                       'Category Name',
                       textAlign: TextAlign.start,
@@ -95,7 +97,7 @@ class ProductDetails extends StatelessWidget{
                     ),
 
                     Padding(
-                      padding: const EdgeInsets.only(top: 5, bottom: 5),
+                      padding: EdgeInsets.only(top: 5, bottom: 5),
                       child: Text(
                         'Product Name',
                         textAlign: TextAlign.start,
@@ -116,7 +118,7 @@ class ProductDetails extends StatelessWidget{
                     ),
 
                     Padding(
-                      padding: const EdgeInsets.only(top: 5, bottom: 5),
+                      padding: EdgeInsets.only(top: 5, bottom: 5),
                       child: Text(
                         'Unit-4',
                         textAlign: TextAlign.start,
@@ -137,7 +139,7 @@ class ProductDetails extends StatelessWidget{
                     ),
 
                     Padding(
-                      padding: const EdgeInsets.only(top: 8, bottom: 5),
+                      padding: EdgeInsets.only(top: 8, bottom: 5),
                       child: Text(
                         'Quantity Available - 15 pcs',
                         textAlign: TextAlign.start,

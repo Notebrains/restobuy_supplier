@@ -1,4 +1,4 @@
-package com.restobuy.supplier.restobuy_supplier_flutter
+package com.restobuy.supplier
 
 import io.flutter.embedding.android.FlutterActivity
 

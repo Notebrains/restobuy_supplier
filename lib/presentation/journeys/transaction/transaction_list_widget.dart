@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animator/flutter_animator.dart';
+import 'package:restobuy_supplier_flutter/data/models/TransactionApiResModel.dart';
+import 'package:restobuy_supplier_flutter/presentation/themes/theme_color.dart';
 import 'package:restobuy_supplier_flutter/presentation/widgets/no_data_found.dart';
 import 'package:restobuy_supplier_flutter/presentation/widgets/txt.dart';
 import 'package:restobuy_supplier_flutter/presentation/widgets/txt_with_width.dart';
 
 class TransactionListWidget extends StatelessWidget {
+  final List<Response> response;
   final int index;
   final Function(int index) onTapOnList;
   final Function onRefreshed;
 
-  TransactionListWidget({
+  const TransactionListWidget({
     Key? key,
+    required this.response,
     required this.index,
     required this.onTapOnList,
     required this.onRefreshed,
@@ -18,7 +21,7 @@ class TransactionListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if ('ssdsd'.isNotEmpty) {
+    if (response.isNotEmpty) {
       return InkWell(
         child: Container(
           padding: const EdgeInsets.all(16),
@@ -39,32 +42,19 @@ class TransactionListWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Txt(
-                        txt: 'ORDER ID - 23232323',
-                        txtColor: Colors.amber,
+                        txt: 'Transaction id -\n${response[index].transactionId}',
+                        txtColor: AppColor.appTxtAmber,
                         txtSize: 14,
                         fontWeight: FontWeight.bold,
                         padding: 3,
-                        onTap:  (){},
                       ),
 
                       Txt(
-                        txt: 'Restaurant Name',
-                        txtColor: Colors.black,
-                        txtSize: 16,
-                        fontWeight: FontWeight.bold,
-                        padding: 3,
-                        onTap: () {
-                        },
-                      ),
-
-                      Txt(
-                        txt: 'INVOICE ID\nINV0453235',
+                        txt: 'Invoice id -\n${response[index].invoiceId}',
                         txtColor: Colors.black54,
                         txtSize: 14,
                         fontWeight: FontWeight.normal,
                         padding: 3,
-                        onTap: () {
-                        },
                       ),
                     ],
                   ),
@@ -74,21 +64,18 @@ class TransactionListWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Txt(
-                        txt: '29-07-21  13.40',
-                        txtColor: Colors.black,
+                        txt: 'Date & Time\n${response[index].datetime!}' ,
+                        txtColor: Colors.black54,
                         txtSize: 14,
                         fontWeight: FontWeight.normal,
-                        padding: 5,
-                        onTap: () {
-                        },
+                        padding: 2,
                       ),
                       Txt(
-                        txt: '\$100.00',
-                        txtColor: Colors.black,
+                        txt: 'Amount - ${response[index].transactionAmount!}',
+                        txtColor: Colors.black54,
                         txtSize: 16,
                         fontWeight: FontWeight.bold,
-                        padding: 5,
-                        onTap: (){},
+                        padding: 2,
                       ),
                     ],
                   ),
@@ -111,12 +98,11 @@ class TransactionListWidget extends StatelessWidget {
                         ),
                         alignment: Alignment.center,
                         child: Txt(
-                          txt: 'Successful',
+                          txt: response[index].transactionStatus!,
                           txtColor: Colors.black,
                           txtSize: 14,
                           fontWeight: FontWeight.normal,
                           padding: 3,
-                          onTap:  (){},
                         ),
                       ),
                       onTap: () {
@@ -136,12 +122,11 @@ class TransactionListWidget extends StatelessWidget {
                         ),
                         alignment: Alignment.center,
                         child: Txt(
-                          txt: 'Cash',
+                          txt: response[index].paymentMode!,
                           txtColor: Colors.black,
                           txtSize: 14,
                           fontWeight: FontWeight.normal,
                           padding: 3,
-                          onTap:  (){},
                         ),
                       ),
                       onTap: () {
@@ -162,7 +147,6 @@ class TransactionListWidget extends StatelessWidget {
     } else {
       return NoDataFound(txt: 'No data found',
         onRefresh: (){
-          print('---- : -----');
           onRefreshed();
         },
       );

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../common/constants/size_constants.dart';
-import '../../common/constants/translation_constants.dart';
 import '../../common/extensions/size_extensions.dart';
-import '../../common/extensions/string_extensions.dart';
 import 'button.dart';
 
 class AppDialog extends StatelessWidget {
@@ -47,13 +45,13 @@ class AppDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              title.t(context),
+              title,
               style: Theme.of(context).textTheme.headline5,
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: Sizes.dimen_6.h),
               child: Text(
-                description.t(context),
+                description,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyText2,
               ),
@@ -63,7 +61,7 @@ class AppDialog extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              text: TranslationConstants.okay,
+              text: 'Okay',
             ),
           ],
         ),

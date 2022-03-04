@@ -13,10 +13,10 @@ void edgeAlert(
     BuildContext context, {
       String title = '',
       String description = '',
-      Color? backgroundColor,
+      Color? backgroundColor = Colors.orangeAccent,
       int duration = 1,
       Gravity gravity = Gravity.top,
-      IconData? icon,
+      IconData icon = Icons.info,
     }) {
   OverlayView.createView(
     context,

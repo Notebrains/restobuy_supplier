@@ -1,5 +1,5 @@
-import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
+import 'package:restobuy_supplier_flutter/presentation/widgets/lottie_loading.dart';
 
 class LoadingCircle extends StatelessWidget {
   final double size;
@@ -11,11 +11,7 @@ class LoadingCircle extends StatelessWidget {
     return SizedBox(
       width: size,
       height: size,
-      child: FlareActor(
-        'assets/animations/loading_circle.flr',
-        animation: 'load',
-        snapToEnd: true,
-      ),
+      child: LottieLoading(),
     );
   }
 }

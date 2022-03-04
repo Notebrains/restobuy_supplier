@@ -1,13 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'dart:async';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:restobuy_supplier_flutter/common/constants/app_strings.dart';
+import 'package:restobuy_supplier_flutter/common/extensions/common_fun.dart';
+import 'package:restobuy_supplier_flutter/data/core/api_constants.dart';
+import 'package:restobuy_supplier_flutter/data/data_sources/api_functions.dart';
+import 'package:restobuy_supplier_flutter/data/data_sources/local_data_source_shared_preferences.dart';
+import 'package:restobuy_supplier_flutter/data/models/LoginApiResModel.dart';
+import 'package:restobuy_supplier_flutter/presentation/libraries/edge_alerts/edge_alerts.dart';
 import '../../../common/constants/route_constants.dart';
 import '../../../common/constants/size_constants.dart';
-import '../../../common/constants/translation_constants.dart';
 import '../../../common/extensions/size_extensions.dart';
-import '../../../common/extensions/string_extensions.dart';
-import '../../blocs/login/login_cubit.dart';
-import '../../themes/theme_text.dart';
 import '../../widgets/button.dart';
 import 'label_field_widget.dart';
 
@@ -19,32 +23,20 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  late TextEditingController? _userNameController, _passwordController;
-  bool enableSignIn = false;
+  late TextEditingController? _emailController, _passwordController;
 
   @override
   void initState() {
     super.initState();
-    _userNameController = TextEditingController();
+    _emailController = TextEditingController();
     _passwordController = TextEditingController();
 
-    _userNameController?.addListener(() {
-      setState(() {
-        enableSignIn = (_userNameController?.text.isNotEmpty ?? false) &&
-            (_passwordController?.text.isNotEmpty ?? false);
-      });
-    });
-    _passwordController?.addListener(() {
-      setState(() {
-        enableSignIn = (_userNameController?.text.isNotEmpty ?? false) &&
-            (_passwordController?.text.isNotEmpty ?? false);
-      });
-    });
+    //checkIfUserLogin();
   }
 
   @override
   void dispose() {
-    _userNameController?.dispose();
+    _emailController?.dispose();
     _passwordController?.dispose();
     super.dispose();
   }
@@ -63,7 +55,7 @@ class _LoginFormState extends State<LoginForm> {
             LabelFieldWidget(
               label: 'Email Id',
               hintText: 'Enter email id here',
-              controller: _userNameController!,
+              controller: _emailController!,
               ic: Icons.email,
 
             ),
@@ -74,39 +66,66 @@ class _LoginFormState extends State<LoginForm> {
               isPasswordField: true,
               ic: Icons.lock_rounded,
             ),
-            /*BlocConsumer<LoginCubit, LoginState>(
-              buildWhen: (previous, current) => current is LoginError,
-              builder: (context, state) {
-                if (state is LoginError)
-                  return Text(
-                    state.message.t(context),
-                    style: TextStyle(color: Colors.black),
-                  );
-                return const SizedBox.shrink();
-              },
-              listenWhen: (previous, current) => current is LoginSuccess,
-              listener: (context, state) {
 
-              },
-            ),*/
 
             Button(
               onPressed: (){
-                Navigator.of(context).pushNamedAndRemoveUntil(
-                  RouteList.home_screen, (route) => false,
-                );
+                if (_emailController!.text.isEmpty) {
+                  edgeAlert(context, title: 'Warning', description: AppStrings.emailRequired);
+                } else if (_passwordController!.text.isEmpty) {
+                  edgeAlert(context, title: 'Warning', description: AppStrings.passwordRequired);
+                } else {
+                  doLogin();
+                }
               },
               text: 'Login',
             ),
             Button(
-              onPressed: (){
-
-              },
               text: 'Forgot Password',
+              onPressed: (){
+                Navigator.of(context).pushNamed(RouteList.forgot_password,);
+              },
             ),
           ],
         ),
       ),
     );
+  }
+
+  void checkIfUserLogin() async {
+    try {
+      String? userId = await MySharedPreferences().getUserId();
+      if (kDebugMode) {
+        print('----userId : $userId');
+      }
+      if (userId != '' && userId != null) {
+        Navigator.of(context).pushNamedAndRemoveUntil(RouteList.home_screen,(route) => false,);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void doLogin() async {
+    showLoadingDialog(context);
+    Map<String, dynamic> data = {};
+    data["email"] = _emailController!.text;
+    data["password"] = _passwordController!.text;
+
+    await ApiFun.apiPostWithBody(ApiConstants.login, data).then((jsonDecodeData){
+      LoginApiResModel model = LoginApiResModel.fromJson(jsonDecodeData);
+      edgeAlert(context, title: 'Message', description: model.message??'');
+      if (kDebugMode) {
+        print('----Login Res : ${model.message}');
+      }
+      if (model.status == 1) {
+        MySharedPreferences().saveUserId(model.response!.userId.toString());
+        MySharedPreferences().saveUserDetails(model);
+
+        Timer(const Duration(milliseconds: 2000), () {
+          Navigator.pushNamed(context, RouteList.home_screen);
+        });
+      }
+    });
   }
 }

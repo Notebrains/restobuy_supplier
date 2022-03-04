@@ -1,6 +1,6 @@
 
 String validateEmptyString(String value) {
-  if (value.length == 0) {
+  if (value.isEmpty) {
     return "Field is required!";
   }
   return '';
@@ -15,8 +15,8 @@ String validateEmptyDouble(double value) {
 
 String validateName(String value) {
   String pattern = r'(^[a-zA-Z ]*$)';
-  RegExp regExp = new RegExp(pattern);
-  if (value.length == 0) {
+  RegExp regExp = RegExp(pattern);
+  if (value.isEmpty) {
     return "Name is Required";
   } else if (!regExp.hasMatch(value)) {
     return "Name must be a-z and A-Z";
@@ -25,7 +25,7 @@ String validateName(String value) {
 }
 
 String validateMobile(String value) {
-  if (value.length == 0) {
+  if (value.isEmpty) {
     return "Mobile is Required";
   } else if (value.length < 7) {
     return "Please enter valid mobile number";
@@ -34,7 +34,7 @@ String validateMobile(String value) {
 }
 
 String validateZipCode(String value) {
-  if (value.length == 0) {
+  if (value.isEmpty) {
     return "Zip code is required";
   } else if (value.length < 5) {
     return "Please enter valid zip code";
@@ -45,8 +45,8 @@ String validateZipCode(String value) {
 String validateEmail(String value) {
   String pattern =
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-  RegExp regExp = new RegExp(pattern);
-  if (value.length == 0) {
+  RegExp regExp = RegExp(pattern);
+  if (value.isEmpty) {
     return "Email is Required";
   } else if (!regExp.hasMatch(value)) {
     return "Invalid Email";

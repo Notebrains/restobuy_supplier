@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../common/constants/size_constants.dart';
 import '../../common/extensions/size_extensions.dart';
-import '../../common/extensions/string_extensions.dart';
 import '../themes/theme_color.dart';
 
 class Button extends StatelessWidget {
@@ -20,11 +19,9 @@ class Button extends StatelessWidget {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
       curve: Curves.easeIn,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.amber,
-        borderRadius: BorderRadius.all(
-          Radius.circular(5),
-        ),
+        borderRadius: BorderRadius.all(Radius.circular(5),),
       ),
       padding: EdgeInsets.symmetric(horizontal: Sizes.dimen_8.w),
       margin: EdgeInsets.symmetric(vertical: Sizes.dimen_8.h),
@@ -34,7 +31,7 @@ class Button extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           text,
-          style: TextStyle(color: Colors.black, fontSize: 14),
+          style: const TextStyle(color: Colors.black, fontSize: 16),
         ),
       ),
     );

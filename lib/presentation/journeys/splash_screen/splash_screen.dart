@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Splash extends StatelessWidget {
+  const Splash({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +23,6 @@ class Init {
     // This is where you can initialize the resources needed by your app while
     // the splash screen is displayed.  Remove the following example because
     // delaying the user experience is a bad design practice!
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
   }
 }

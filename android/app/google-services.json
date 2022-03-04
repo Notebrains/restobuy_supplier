@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "77347090571",
+    "project_id": "restobuy",
+    "storage_bucket": "restobuy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77347090571:android:6effeb5c93daddec25648e",
+        "android_client_info": {
+          "package_name": "com.restobuy.restaurant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77347090571-mo4962jdfkri2jfq37o38poat7tucptq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.restobuy.restaurant",
+            "certificate_hash": "d53d917c39fd01bdd0c292cd90a7d81ba1396fa2"
+          }
+        },
+        {
+          "client_id": "77347090571-cbeup07aq2omgjaasmt866984sou8c5v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTP0Fe8SmidISSJGhlZFGUOgmF-mvULuY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77347090571-cbeup07aq2omgjaasmt866984sou8c5v.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "77347090571-9m1falnlulo0m3i3f6kc3euc2h27jui2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.restobuy.restaurant"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77347090571:android:c5ba218328f5216225648e",
+        "android_client_info": {
+          "package_name": "com.restobuy.supplier"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77347090571-cbeup07aq2omgjaasmt866984sou8c5v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTP0Fe8SmidISSJGhlZFGUOgmF-mvULuY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77347090571-cbeup07aq2omgjaasmt866984sou8c5v.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "77347090571-9m1falnlulo0m3i3f6kc3euc2h27jui2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.restobuy.restaurant"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

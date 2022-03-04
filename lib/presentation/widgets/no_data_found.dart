@@ -14,19 +14,19 @@ class NoDataFound extends StatelessWidget{
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 50, right: 80),
-            child: Lottie.asset('assets/animations/lottiefiles/empty_search_data.json', fit: BoxFit.cover, width: 200, height: 200),
+            padding: const EdgeInsets.only(bottom: 50, right: 80, top: 0),
+            child: Lottie.asset('assets/animations/lottiefiles/lottie-empty.json', fit: BoxFit.cover, width: 200, height: 200),
           ),
 
           Padding(
             padding: const EdgeInsets.only(bottom: 50, top: 5),
             child: Text(txt,
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey, fontSize: 20, fontFamily: 'Roboto', fontWeight: FontWeight.normal, wordSpacing: 0),
+                style: const TextStyle(color: Colors.grey, fontSize: 18, fontWeight: FontWeight.normal, wordSpacing: 0),
             ),
           ),
 
-          InkWell(
+          /*InkWell(
             child: Container(
               height: 35,
               width: 150,
@@ -38,14 +38,14 @@ class NoDataFound extends StatelessWidget{
                 borderRadius: BorderRadius.circular(5.0),
               ),
               alignment: Alignment.center,
-              child: Text('Refresh',
+              child: const Text('Refresh',
                 style: TextStyle(fontFamily: 'Roboto', fontSize: 14, color: Colors.black54, fontWeight: FontWeight.normal),
               ),
             ),
             onTap: (){
               onRefresh();
             },
-          ),
+          ),*/
         ],
       ),
     );

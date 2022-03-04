@@ -41,5 +41,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSCameraUsageDescription</key>
+    <string>RestoBuy want to access your Camera to get product images from device</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>RestoBuy want to access your Gallery to get product images from device</string>
 </dict>
 </plist>
